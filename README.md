@@ -10,6 +10,35 @@ Ce projet contient un ensemble de configurations Terraform pour déployer une in
 ## Prérequis
 - Terraform installé sur votre machine.
 - Un compte AWS et des clés d'accès configurées pour Terraform.
+- ## Obtention des identifiants
+Les identifiants peuvent être générés pour un utilisateur AWS dans la console IAM :
+[https://us-east-1.console.aws.amazon.com/iam/home#/users](https://us-east-1.console.aws.amazon.com/iam/home#/users)
+
+Tout d'abord, créez un utilisateur si vous n'en avez pas déjà un :
+
+![Créer un utilisateur](assets/01-create-user.png)
+
+L'utilisateur doit avoir des permissions sur le service EC2 pour pouvoir créer des instances et des équilibres de charge :
+
+![Attacher des permissions](assets/02-attach-permissions.png)
+
+> Les permissions ne doivent pas être attachées directement à un utilisateur, utilisez plutôt un groupe.
+
+Ensuite, générez les clés d'accès pour votre utilisateur : [https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html)
+
+![Obtenir les clés d'accès](assets/03-access-keys.png)
+
+Notez l' _Access Key_ et l' _Access Secret Key_ générées.
+
+## Variables d'environnement requises
+
+Ce projet nécessite 2 variables d'environnement pour fonctionner :
+
+| env                   | valeur                                               |
+|-----------------------|------------------------------------------------------|
+| AWS_ACCESS_KEY_ID     | La clé d'accès générée à l'étape précédente         |
+| AWS_SECRET_ACCESS_KEY | La clé d'accès secrète générée à l'étape précédente |
+
 
 ## Installation
 1. Clonez ce projet.
